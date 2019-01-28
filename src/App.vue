@@ -1,5 +1,18 @@
 <template>
   <div id="app">
+    <BaseInput v-model="username"
+               class="username-input"
+               placeholder="Enter your username"
+    ></BaseInput>
+    <BlogPost title="My journey with Vue"></BlogPost>
+    <BlogPost :title="message"></BlogPost>
+    <BlogPost :title="message+message2"></BlogPost>
+    <BlogPost :likes="42"></BlogPost>
+    <BlogPost :is-published="false"></BlogPost>
+    <BlogPost :comment-ids="[234, 266, 273]"></BlogPost>
+    <blogPost :author="{ name: 'Veronica', company: 'Veridian Dynamics' }"></blogPost>
+    <blog-post v-bind="post"></blog-post>
+    <blog-post class="date-picker-theme-dark"></blog-post>
     <CustomInput :value="message" @input="message=$event"></CustomInput>
     <div>
       <label><input v-model="message"></label>
@@ -258,6 +271,8 @@
   import Item from './components/Item.vue'
   import ButtonCounter from './components/ButtonCounter.vue'
   import CustomInput from './components/CustomInput.vue'
+  import BlogPost from './components/BlogPost.vue'
+  import BaseInput  from './components/BaseInput.vue'
   import Vue from 'vue'
 
   export default {
@@ -268,6 +283,8 @@
       Item,
       ButtonCounter,
       CustomInput,
+      BlogPost,
+      BaseInput
     },
     data: function () {
       return {
@@ -358,7 +375,12 @@
           {id: 1, text: 'text 1'},
           {id: 2, text: 'text 2'},
           {id: 3, text: 'text 3'},
-        ]
+        ],
+        postobj:{
+          id: 1,
+          title: 'My Journey with Vue'
+        },
+        
       }
     },
     computed: {
