@@ -1,9 +1,11 @@
 <template>
   <div id="app">
+    <BaseInput @focus.native="onFocus"></BaseInput>
     <BaseInput v-model="username"
                class="username-input"
                placeholder="Enter your username"
     ></BaseInput>
+    <BaseInput v-model="username"></BaseInput>
     <BlogPost title="My journey with Vue"></BlogPost>
     <BlogPost :title="message"></BlogPost>
     <BlogPost :title="message+message2"></BlogPost>
@@ -11,7 +13,7 @@
     <BlogPost :is-published="false"></BlogPost>
     <BlogPost :comment-ids="[234, 266, 273]"></BlogPost>
     <blogPost :author="{ name: 'Veronica', company: 'Veridian Dynamics' }"></blogPost>
-    <blog-post v-bind="post"></blog-post>
+    <blog-post v-bind="post1"></blog-post>
     <blog-post class="date-picker-theme-dark"></blog-post>
     <CustomInput :value="message" @input="message=$event"></CustomInput>
     <div>
@@ -380,6 +382,11 @@
           id: 1,
           title: 'My Journey with Vue'
         },
+        username: 'logic',
+        post1: {
+          id:1,
+          text: 'new world'
+        },
         
       }
     },
@@ -476,6 +483,9 @@
           event.preventDefault()
         }
         alert(message)
+      },
+      onFocus: function () {
+        alert('on focus')
       }
     },
     watch: {
