@@ -1,5 +1,21 @@
 <template>
   <div id="app">
+    <TodoList :todos="todos">
+      <template slot-scope="slotProps">
+        <span v-if="slotProps.todo.isComplete">good</span>
+        {{slotProps.todo.text}}
+      </template>
+    </TodoList>
+    <TodoList :todos="todos">
+      <template slot-scope="{todo}">
+        <span v-if="todo.isComplete">good</span>
+        {{todo.text}}todo
+      </template>
+    </TodoList>
+    <BaseInput>your name {{message}} <span>logic</span>
+      <template slot="end"><h1>end</h1></template>
+      <h2 slot="end2">end 2</h2>
+    </BaseInput>
     <BaseInput @focus.native="onFocus"></BaseInput>
     <BaseInput v-model="username"
                class="username-input"
@@ -274,7 +290,8 @@
   import ButtonCounter from './components/ButtonCounter.vue'
   import CustomInput from './components/CustomInput.vue'
   import BlogPost from './components/BlogPost.vue'
-  import BaseInput  from './components/BaseInput.vue'
+  import BaseInput from './components/BaseInput.vue'
+  import TodoList from './components/TodoList.vue'
   import Vue from 'vue'
 
   export default {
@@ -286,7 +303,8 @@
       ButtonCounter,
       CustomInput,
       BlogPost,
-      BaseInput
+      BaseInput,
+      TodoList
     },
     data: function () {
       return {
@@ -295,9 +313,9 @@
         message2: 'hello vue.js!',
         seen: true,
         todos: [
-          {id: 1, text: '学习 JavaScript'},
-          {id: 2, text: '学习 Vue'},
-          {id: 3, text: '整个牛项目'}
+          {id: 1, text: '学习 JavaScript',isComplete:true},
+          {id: 2, text: '学习 Vue',isComplete:true},
+          {id: 3, text: '整个牛项目',isComplete:false}
         ],
         groceryList: [
           {id: 0, text: '蔬菜'},
@@ -378,16 +396,16 @@
           {id: 2, text: 'text 2'},
           {id: 3, text: 'text 3'},
         ],
-        postobj:{
+        postobj: {
           id: 1,
           title: 'My Journey with Vue'
         },
         username: 'logic',
         post1: {
-          id:1,
+          id: 1,
           text: 'new world'
         },
-        
+
       }
     },
     computed: {

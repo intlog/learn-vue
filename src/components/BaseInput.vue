@@ -1,10 +1,10 @@
 <template>
-  <label>{{ label }}
+  <label>{{ label }} <slot></slot>
     <input v-bind="$attrs"
            v-bind:value="value"
            v-on:input="$emit('input', $event.target.value)"
            @="inputListeners"
-    ></label>
+    ><slot name="end"></slot><slot name="end2"></slot></label>
 </template>
 
 <script>
