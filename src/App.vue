@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <keep-alive><BaseInput></BaseInput></keep-alive>
     <TodoList :todos="todos">
       <template slot-scope="slotProps">
         <span v-if="slotProps.todo.isComplete">good</span>
